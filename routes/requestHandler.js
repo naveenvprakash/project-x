@@ -2,7 +2,7 @@
 var express = require('express');
 var router = express.Router();
 
-var ServiceAPI = require('../services/serviceAPI');
+var ServiceAPI = require('../services/serviceApi');
 var serviceAPI = new ServiceAPI();
 
 
