@@ -5,7 +5,7 @@ module.exports = {
         host: "localhost",
         port: 27017,
         database: "projectX",
-        uri:'mongodb://localhost:27017/projectX',
+        uri:'mongodb://54.254.229.85:27017/projectX',
         "mediaData":"mediaData"
 
     },
