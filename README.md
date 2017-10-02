@@ -54,7 +54,7 @@ Make sure you have the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed
 	$ git push heroku master
 	```
 
-2. Open your chat application in the browser
+2. Open your application in the browser
 
 	```
 	$ heroku open

@@ -82,16 +82,12 @@ function handlePagination(token) {
     return videosData.then(function(mediaData){
         console.log("api hit done and data is: ", mediaData)
         if(mediaData && mediaData!==undefined && mediaData.items.length >=0 ){
-            //
-
-            //DB operation:
-            // let insertResp = mediaDAO.insertMultiple(mediaData.items)
-            // if(insertResp.success){
-            //     handlePagination(mediaData.nextPageToken);
-            // } else{
-            //     return {success: false, error: err};
-            // }
-
+            let insertResp = mediaDAO.insertMultiple(mediaData.items)
+            if(insertResp.success){
+                handlePagination(mediaData.nextPageToken);
+            } else{
+                return {success: false, error: err};
+            }
         }else if(mediaData == undefined){
             return {success: false};
         }else{
