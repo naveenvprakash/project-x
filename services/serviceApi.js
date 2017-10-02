@@ -51,8 +51,8 @@ ServiceAPI.prototype.getMediaDataAndSave = function ( req, res ) {
     let token = req.body && req.body.token && req.body.token!==undefined? req.body.token : ''; 
     return handlePagination(token).then(function(dataResp){
         console.log("came to calling function handlePagination resp: " , dataResp );
-        if(dataResp && dataResp.success){
-            return {success: true, message: "Data scraping Successfully Done And saved in Db"}
+        if(dataResp){
+            return {success: true, message: "Data scraping Successfully Done And saved in Db", data: dataResp}
         }else{
             return {success:"false", message:"somthing went Wrong please try later"};
         }
@@ -82,12 +82,13 @@ function handlePagination(token) {
     return videosData.then(function(mediaData){
         console.log("api hit done and data is: ", mediaData)
         if(mediaData && mediaData!==undefined && mediaData.items.length >=0 ){
-            let insertResp = mediaDAO.insertMultiple(mediaData.items)
-            if(insertResp.success){
-                handlePagination(mediaData.nextPageToken);
-            } else{
-                return {success: false, error: err};
-            }
+            return mediaData.items;
+            // let insertResp = mediaDAO.insertMultiple(mediaData.items)
+            // if(insertResp.success){
+            //     handlePagination(mediaData.nextPageToken);
+            // } else{
+            //     return {success: false, error: err};
+            // }
         }else if(mediaData == undefined){
             return {success: false};
         }else{

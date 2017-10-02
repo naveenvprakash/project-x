@@ -12,20 +12,12 @@ router.get('/scraper', function ( req, res ) {
 	console.log("calling started");
     return serviceAPI.getMediaDataAndSave(req,res).then(function (response) {
 		console.log("function called and resp is:", response);
-    	if(resopnse && response.success){
-			res.json({
-        		data: response,
-        		info: {status: "SUCCESS", statusCode: 200, message: response.message}
-    		});
-    	} else{
-    		res.json({
-        		data: response,
-        		info: {status: "FAILURE", statusCode: 500, message: response.message}
-    		});
-
-    	}
+		res.json({
+			data: response,
+			info: {status: "SUCCESS", statusCode: 200, message: response.message}
+		});
     }).catch(function(err) {
-        return res.json({info: {message: err.message, status: "FAILURE", statusCode: err.statusCode}});
+		res.json({info: {message: err.message, status: "FAILURE", statusCode: err.statusCode}});
     })
 })
 
